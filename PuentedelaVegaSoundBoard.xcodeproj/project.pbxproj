@@ -14,6 +14,7 @@
 		EEA663332CB49285008AAC74 /* PuentedelaVegaSoundBoard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EEA663312CB49285008AAC74 /* PuentedelaVegaSoundBoard.xcdatamodeld */; };
 		EEA663352CB49287008AAC74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEA663342CB49287008AAC74 /* Assets.xcassets */; };
 		EEA663382CB49287008AAC74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EEA663362CB49287008AAC74 /* LaunchScreen.storyboard */; };
+		EEA663402CB49A06008AAC74 /* SoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA6633F2CB49A06008AAC74 /* SoundViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		EEA663342CB49287008AAC74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EEA663372CB49287008AAC74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EEA663392CB49287008AAC74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEA6633F2CB49A06008AAC74 /* SoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				EEA663362CB49287008AAC74 /* LaunchScreen.storyboard */,
 				EEA663392CB49287008AAC74 /* Info.plist */,
 				EEA663312CB49285008AAC74 /* PuentedelaVegaSoundBoard.xcdatamodeld */,
+				EEA6633F2CB49A06008AAC74 /* SoundViewController.swift */,
 			);
 			path = PuentedelaVegaSoundBoard;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 				EEA6632D2CB49285008AAC74 /* ViewController.swift in Sources */,
 				EEA663292CB49285008AAC74 /* AppDelegate.swift in Sources */,
 				EEA6632B2CB49285008AAC74 /* SceneDelegate.swift in Sources */,
+				EEA663402CB49A06008AAC74 /* SoundViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
