@@ -15,42 +15,67 @@ class SoundViewController: UIViewController {
     @IBOutlet weak var nombreTextField: UITextField!
     @IBOutlet weak var agregarButton: UIButton!
     
+    @IBOutlet weak var volumenSlider: UISlider!
+    @IBOutlet weak var tiempoLabel: UILabel!
+    
     var grabarAudio: AVAudioRecorder?
     var reproducirAudio:AVAudioPlayer?
     var audioURL:URL?
-    
+    var timer: Timer?
+    var tiempoGrabacion: Int = 0
+    @NSManaged var duracion: Int32
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configurarGrabacion()
         reproducirButton.isEnabled = false
         agregarButton.isEnabled = false
+        volumenSlider.value = 0.5
+        reproducirAudio?.volume = volumenSlider.value
+
         // Do any additional setup after loading the view.
     }
     
+    
+    @IBAction func volumenSliderChanged(_ sender: UISlider) {
+        if let audioPlayer = reproducirAudio {
+                audioPlayer.volume = sender.value // Ajustar el volumen según el valor del slider
+            }
+    }
+    
+    
     @IBAction func grabarTapped(_ sender: Any) {
         if grabarAudio!.isRecording {
-                // Detener la grabación
                 grabarAudio?.stop()
-                
-                // Cambiar texto del botón a "GRABAR"
+                timer?.invalidate() // Detener el timer
                 grabarButton.setTitle("GRABAR", for: .normal)
                 reproducirButton.isEnabled = true
                 agregarButton.isEnabled = true
             } else {
-                // Empezar a grabar
                 grabarAudio?.record()
-                
-                // Cambiar el texto del botón a "DETENER"
+                tiempoGrabacion = 0 // Reiniciar tiempo
+                tiempoLabel.text = "00:00" // Reiniciar label
                 grabarButton.setTitle("DETENER", for: .normal)
                 reproducirButton.isEnabled = false
+                
+                // Iniciar el timer
+                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(actualizarTiempo), userInfo: nil, repeats: true)
             }
+    }
+    
+    @objc func actualizarTiempo() {
+        tiempoGrabacion += 1
+        let minutos = tiempoGrabacion / 60
+        let segundos = tiempoGrabacion % 60
+        tiempoLabel.text = String(format: "%02d:%02d", minutos, segundos)
     }
     
     @IBAction func reproducirTapped(_ sender: Any) {
         do {
                 // Verificar si hay una grabación disponible en la URL y reproducir
                 reproducirAudio = try AVAudioPlayer(contentsOf: audioURL!)
+            reproducirAudio?.volume = volumenSlider.value // Establecer el volumen del audio player
+
                 reproducirAudio?.play()
                 print("Reproduciendo el audio grabado.")
             } catch let error as NSError {
@@ -60,16 +85,19 @@ class SoundViewController: UIViewController {
     
     @IBAction func agregarTapped(_ sender: Any) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            
-            let grabacion = Grabacion(context: context)
-            grabacion.nombre = nombreTextField.text
-            
-            if let audioData = NSData(contentsOf: audioURL!) as Data? {
-                grabacion.audio = audioData
-            }
-            
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
-            navigationController!.popViewController(animated: true)    }
+        
+        let grabacion = Grabacion(context: context)
+        grabacion.nombre = nombreTextField.text
+        grabacion.duracion = Int32(tiempoGrabacion) // Guarda la duración grabada
+
+        if let audioData = NSData(contentsOf: audioURL!) as Data? {
+            grabacion.audio = audioData
+        }
+             
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        navigationController!.popViewController(animated: true)
+        
+    }
     
     func configurarGrabacion() {
         do {

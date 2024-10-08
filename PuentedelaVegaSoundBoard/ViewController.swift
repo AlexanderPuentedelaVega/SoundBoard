@@ -31,14 +31,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = UITableViewCell()
-            
-            
-            // Configurar la celda con la grabación correspondiente
-            let grabacion = grabaciones[indexPath.row]
-            cell.textLabel?.text = grabacion.nombre
-            
-            return cell
+                
+                // Configurar la celda con la grabación correspondiente
+                let grabacion = grabaciones[indexPath.row]
+                cell.textLabel?.text = "\(grabacion.nombre!) - \(formatearDuracion(grabacion.duracion))"
+                
+                return cell
         }
+    
+    func formatearDuracion(_ duracion: Int32) -> String {
+        let minutos = duracion / 60
+        let segundos = duracion % 60
+        return String(format: "%02d:%02d", minutos, segundos)
+    }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let grabacion = grabaciones[indexPath.row]
@@ -73,14 +78,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     
     override func viewWillAppear(_ animated: Bool) {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
-        do {
-            grabaciones = try context.fetch(Grabacion.fetchRequest())
-            tablaGrabaciones.reloadData()
-        } catch {
-            // Manejo de errores vacío
-        }
+        super.viewWillAppear(animated)
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            do {
+                grabaciones = try context.fetch(Grabacion.fetchRequest())
+                tablaGrabaciones.reloadData()
+            } catch {
+                // Manejo de errores vacío
+            }
         
         
     }

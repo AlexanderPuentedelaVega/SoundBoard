@@ -95,15 +95,32 @@
                                     <action selector="agregarTapped:" destination="Pm9-3Y-iC8" eventType="touchUpInside" id="n3Z-xo-BMW"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiempo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqE-5p-eIF">
+                                <rect key="frame" x="178" y="438" width="58" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qkt-sW-dzp">
+                                <rect key="frame" x="98" y="501" width="218" height="31"/>
+                                <connections>
+                                    <action selector="volumenSliderChanged:" destination="Pm9-3Y-iC8" eventType="valueChanged" id="qrV-wU-pJ6"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ilg-Pn-MDm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="CqE-5p-eIF" firstAttribute="top" secondItem="Fbs-eF-mJ5" secondAttribute="bottom" constant="26" id="2W0-NJ-SMk"/>
                             <constraint firstItem="Nvp-aE-oWk" firstAttribute="leading" secondItem="ilg-Pn-MDm" secondAttribute="leading" constant="20" id="3FC-V1-Ha3"/>
+                            <constraint firstItem="Qkt-sW-dzp" firstAttribute="leading" secondItem="ilg-Pn-MDm" secondAttribute="leading" constant="100" id="3qN-ob-xe2"/>
                             <constraint firstItem="agj-GZ-Kao" firstAttribute="top" secondItem="ilg-Pn-MDm" secondAttribute="top" constant="20" id="5Bz-Mb-7Xt"/>
+                            <constraint firstItem="CqE-5p-eIF" firstAttribute="centerX" secondItem="D0g-AR-tcc" secondAttribute="centerX" id="5on-qe-7Kf"/>
                             <constraint firstItem="BbK-JC-ehD" firstAttribute="top" secondItem="Nvp-aE-oWk" secondAttribute="bottom" constant="20" id="8a7-Te-GFy"/>
                             <constraint firstItem="agj-GZ-Kao" firstAttribute="centerX" secondItem="D0g-AR-tcc" secondAttribute="centerX" id="Ap5-A7-5ZO"/>
+                            <constraint firstItem="ilg-Pn-MDm" firstAttribute="trailing" secondItem="Qkt-sW-dzp" secondAttribute="trailing" constant="100" id="FXe-HY-ryS"/>
                             <constraint firstItem="Nvp-aE-oWk" firstAttribute="centerX" secondItem="D0g-AR-tcc" secondAttribute="centerX" id="HNL-76-2s7"/>
+                            <constraint firstItem="Qkt-sW-dzp" firstAttribute="top" secondItem="CqE-5p-eIF" secondAttribute="bottom" constant="42" id="I4U-TS-uNv"/>
                             <constraint firstItem="Fbs-eF-mJ5" firstAttribute="top" secondItem="BbK-JC-ehD" secondAttribute="bottom" constant="20" id="IhV-bf-LhI"/>
                             <constraint firstItem="BbK-JC-ehD" firstAttribute="centerX" secondItem="D0g-AR-tcc" secondAttribute="centerX" id="OhX-Ie-qay"/>
                             <constraint firstItem="ilg-Pn-MDm" firstAttribute="trailing" secondItem="BbK-JC-ehD" secondAttribute="trailing" constant="20" id="Vki-Op-gLZ"/>
@@ -121,6 +138,8 @@
                         <outlet property="grabarButton" destination="agj-GZ-Kao" id="qRj-5T-cgq"/>
                         <outlet property="nombreTextField" destination="BbK-JC-ehD" id="cpF-6w-bXa"/>
                         <outlet property="reproducirButton" destination="9Nn-BS-od1" id="NE1-Sq-4Bd"/>
+                        <outlet property="tiempoLabel" destination="CqE-5p-eIF" id="2gg-FR-3UB"/>
+                        <outlet property="volumenSlider" destination="Qkt-sW-dzp" id="fta-WE-loK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhC-WL-pA0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
